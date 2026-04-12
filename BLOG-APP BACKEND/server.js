@@ -6,6 +6,9 @@ import { authorApp } from './APIs/authorAPI.js'
 import { adminApp } from './APIs/adminAPI.js'
 import { config } from 'dotenv'
 import cookieParser from "cookie-parser";
+import path from 'path';
+import { fileURLToPath } from 'url';
+
 config()
 const app=exp()
 //body parser middleware
@@ -32,10 +35,21 @@ console.log("err in db connection",err)
 }
 connectDB();
 
+// To handle path level static serving and invalid path
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-//To handle invalid Path
+// Serve the frontend build dynamically
+app.use(exp.static(path.join(__dirname, '../BLOG-APP FRONTEND/dist')));
+
 app.use((req, res, next) => {
-  res.status(404).json({ message: `Path ${req.url} is Invalid` })
+  // If the request starts with api routes, return 404 as before
+  if (req.url.startsWith('/user-api') || req.url.startsWith('/author-api') || req.url.startsWith('/admin-api') || req.url.startsWith('/common-api')) {
+    res.status(404).json({ message: `Path ${req.url} is Invalid` })
+  } else {
+    // Other routes should be forwarded to the React Application
+    res.sendFile(path.join(__dirname, '../BLOG-APP FRONTEND/dist/index.html'))
+  }
 })
 
 //To handle errors
