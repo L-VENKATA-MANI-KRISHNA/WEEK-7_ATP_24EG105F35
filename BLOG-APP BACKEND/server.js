@@ -29,6 +29,10 @@ const connectDB = async () => {
       process.exit(1);
     }
     
+    // SAFE LOGGING (Hidden Password)
+    const sanitizedUrl = dbUrl.replace(/:.+@/, ":****@");
+    console.log(`🔗 Attempting connection with: ${sanitizedUrl}`);
+    
     await connect(dbUrl);
     console.log("✅ MongoDB Connected Successfully");
     
