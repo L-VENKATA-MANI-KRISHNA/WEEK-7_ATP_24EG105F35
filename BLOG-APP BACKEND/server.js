@@ -20,19 +20,28 @@ app.use("/author-api", authorApp);
 app.use("/admin-api", adminApp);
 app.use("/common-api", commonApp)
 
-//connect to database
-const connectDB=async()=>{
-try{
-await connect(process.env.DB_URL);
-console.log("DB server connected");
-//assign port
-const port =process.env.PORT || 5000
-app.listen(port,()=>console.log(`server listening on ${port}...`))
+// Connect to Database safely
+const connectDB = async () => {
+  try {
+    const dbUrl = process.env.DB_URL;
+    if (!dbUrl) {
+      console.error("❌ ERROR: DB_URL environment variable is missing!");
+      process.exit(1);
+    }
+    
+    await connect(dbUrl);
+    console.log("✅ MongoDB Connected Successfully");
+    
+    const port = process.env.PORT || 5000;
+    app.listen(port, () => console.log(`🚀 Server listening on port ${port}...`));
+  } catch (err) {
+    console.error("❌ MongoDB Connection Error:");
+    console.error(err.message);
+    // Exit process with failure so Render can restart cleanly
+    process.exit(1);
+  }
+};
 
-}catch(err){
-console.log("err in db connection",err)
-}
-}
 connectDB();
 
 // To handle path level static serving and invalid path
