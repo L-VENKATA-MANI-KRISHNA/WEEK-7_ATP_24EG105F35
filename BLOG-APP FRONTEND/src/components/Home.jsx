@@ -1,5 +1,5 @@
 import { NavLink } from "react-router";
-import { pageBackground, submitBtn } from "../styles/common";
+import { pageBackground, submitBtn } from "../Styles/common";
 
 function Home() {
   return (

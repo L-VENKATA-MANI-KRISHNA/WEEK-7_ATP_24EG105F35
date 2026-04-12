@@ -12,7 +12,7 @@ import {
   errorClass,
   mutedText,
   linkClass,
-} from "../styles/common";
+} from "../Styles/common";
 import { NavLink, useNavigate } from "react-router";
 import { useAuth } from "../Store/authStore";
 

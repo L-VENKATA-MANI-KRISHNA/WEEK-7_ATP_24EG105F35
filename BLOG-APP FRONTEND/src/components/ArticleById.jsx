@@ -25,7 +25,7 @@ import {
   commentUser,
   commentTime,
   commentText,
-} from "../styles/common.js";
+} from "../Styles/common.js";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 

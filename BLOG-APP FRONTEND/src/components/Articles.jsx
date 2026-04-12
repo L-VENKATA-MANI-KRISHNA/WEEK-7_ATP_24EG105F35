@@ -10,7 +10,7 @@ import {
   loadingClass,
   errorClass,
   emptyStateClass,
-} from "../styles/common";
+} from "../Styles/common";
 
 function Articles() {
   const navigate = useNavigate();

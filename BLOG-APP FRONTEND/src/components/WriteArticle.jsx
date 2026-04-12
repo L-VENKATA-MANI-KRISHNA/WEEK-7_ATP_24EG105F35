@@ -14,7 +14,7 @@ import {
   submitBtn,
   errorClass,
   loadingClass,
-} from "../styles/common";
+} from "../Styles/common";
 import { useAuth } from "../Store/authStore";
 
 function WriteArticle() {

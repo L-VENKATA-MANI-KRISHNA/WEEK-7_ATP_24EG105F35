@@ -1,6 +1,6 @@
 import { useNavigate, NavLink } from "react-router";
 import { useAuth } from "../Store/authStore.js";
-import { pageWrapper, submitBtn, divider } from "../styles/common";
+import { pageWrapper, submitBtn, divider } from "../Styles/common";
 
 
 function UserProfile() {

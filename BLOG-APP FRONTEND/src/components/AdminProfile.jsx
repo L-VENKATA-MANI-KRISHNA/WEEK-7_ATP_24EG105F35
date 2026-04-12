@@ -1,6 +1,6 @@
 import { useAuth } from "../Store/authStore.js";
 import { useNavigate } from "react-router";
-import { pageWrapper, divider } from "../styles/common";
+import { pageWrapper, divider } from "../Styles/common";
 
 function AdminProfile() {
 
